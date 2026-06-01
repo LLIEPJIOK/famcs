@@ -1,0 +1,9 @@
+[submodule "госы/ответы/0"]
+	path = госы/ответы/0
+	url = https://github.com/LLIEPJIOK/bsu-famcs-goverment-exam
+[submodule "технические/криптография/3 семестр/лабы/lab1"]
+	path = технические/криптография/3 семестр/лабы/lab1
+	url = https://github.com/LLIEPJIOK/elliptic_curve
+[submodule "технические/безопасность операционных систем/лабы"]
+	path = технические/безопасность операционных систем/лабы
+	url = https://github.com/LLIEPJIOK/security_os_lab
