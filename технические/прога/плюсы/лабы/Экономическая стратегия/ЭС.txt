@@ -1,0 +1,92 @@
+class Game
+{
+	const string DATA_FILE_NAME;
+	Bank* bank;
+	bool isGame;
+	Game(); //в конструкторе запрашивает количество игроков создаёт банк
+	void nextStep (); //запрашивает у игрока все действия которые он хочет сделать, отправляет все эти запросы в бвнк и выдаёт ползователю соответствующий результат 
+	void Save(); //сохранить игру
+	void Load(); //загрузить игру
+	// Все остальные методы синглтона
+}
+
+struct Action
+{
+	int HowMuchToAuto; //количество фабрик которые хочет автоматизировать
+	int Money; //сколько денег запросить в банке
+	int MaterialCount, MaterialPrice; //сколько и по какой цене готов купить пользователь сырьё
+	int ProductCount, ProductPrice; //сколько и по какой цене готов продать пользователь готовую продукцию
+}
+
+struct Result 
+{
+	int turn_number;
+	vector<pair<int, Player_Result>>
+}
+
+struct Player_Result
+{
+	int sold_product;
+	int bought_material;
+	int bought_material_price;
+	int sold_materail_price;
+}
+
+class Bank //Дабрабыт
+{
+	queue<Result> turns;// хранит ходы предыдущие (ещё подумаем над этим)
+	vector<Player> players;
+	vector<pair<int, Action>> current_turn;// хранит все ставки текущего хода
+	Bank(int normPlayers, int autoPlayers); //конструктор создаёт игроков в вектор
+	int Preority; //игрок от которого считать приоритет
+
+	int MaterialCount, MaterialPrice; //сколько и по какой цене готов продать банк сырьё
+	int ProductCount, ProductPrice; //сколько и по какой цене готов купить банк готовую продукцию
+	
+	???bool DoActions(Action act); //делает действия запрошенные игроком 
+	void LuckyCase(); //счастливый случай
+}
+
+class Player
+{	
+	const int ID;
+	static int next_ID;
+	string name;
+	bool isComp;
+	queue<Actions> players_previous_turns; //хранит предыдущие ходы данного игрока(я думаю такое нужно)
+	int debt;//долг
+	double debt_percent;//процент долга
+	int money; //деньги игрока
+	vector<Fabric> fabrics; //фабрики
+	int material; //сырьё
+	int product; //готова продукция
+
+	void send_action();// изменяет вектор в банке
+}
+
+class CompPlayer : Player
+{
+	Action GetAction(/*вся нужная инфа из банка*/); //действия компьюттерного игрока
+}
+
+class Fabric
+{
+	int MAX_TO_CONVERSE; //максимум сколько может переработать за раз
+	int PAYMENT_PER_CONVERSE; //сколько стоит одна переработка
+	int FABRIC_RENT; //стоимость содержания фабрики в месяц 
+
+	bool isAutomised; //является ли автоматизированной
+	int AutoPeriod; //период автоматизации фабрики [0; 9]
+	int conversions; //количество продукции которую перераюатывает фабрика
+
+	bool Converse(int count); //true если может преобразовать count и ставит на переработку
+	bool Automise(); //true если ещё не автоматизированна и ставим автоматизироваться
+	int Step(); //переходит на следующий цикл автоматизации
+		    //возращает количество переработанной продукции и обнуляет поле
+}
+
+int main()
+{
+	Game game1;
+	while (game1.isGame) game1.nextStep();		
+}
