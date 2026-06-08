@@ -1,0 +1,11 @@
+model 9_lebedev_lab1.mod;
+data 9_lebedev_lab1.dat;
+
+option solver cplex;
+
+solve;
+
+display "Оптимальный план производства:";
+display x1, x2, x3;
+display "Максимальная выручка:";
+display Total_Revenue;

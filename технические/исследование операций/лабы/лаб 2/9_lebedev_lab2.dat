@@ -1,0 +1,18 @@
+set NODES := 1 2 3 4 5;
+
+param balance :=
+    1  10
+    2	0
+    3  -3
+    4  -7
+    5	0;
+
+param: ARCS: capacity cost :=
+    1 2   10   11
+    2 3   2    1
+    2 4   3    1
+    2 5   7    2
+    3 4   3    2
+    4 3   2    2
+    5 3   7    4
+    5 4   4    5;

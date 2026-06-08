@@ -1,0 +1,33 @@
+set ITEMS :=
+    painting    # Картина Кайботта
+    bust        # Бюст Диоклетина
+    vase        # Китайская ваза династии Юань
+    porsche     # Porsche 911
+    diamond1    # Бриллиант №1
+    diamond2    # Бриллиант №2
+    diamond3    # Бриллиант №3
+    sofa        # Диван в стиле Людовика XV
+    dog1        # Собака 1 (джек-рассел-терьер)
+    dog2        # Собака 2 (джек-рассел-терьер)
+    sculpture   # Скульптура 200 года н.э.
+    boat        # Парусная лодка
+    harley      # Мотоцикл Harley-Davidson
+    napoleon;   # Предмет мебели Наполеона
+;
+
+param value :=
+    painting   25000
+    bust        5000
+    vase       20000
+    porsche    40000
+    diamond1   12000
+    diamond2   12000
+    diamond3   12000
+    sofa        3000
+    dog1        3000
+    dog2        3000
+    sculpture  10000
+    boat       15000
+    harley     10000
+    napoleon   13000
+;

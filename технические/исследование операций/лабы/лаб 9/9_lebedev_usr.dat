@@ -1,0 +1,8 @@
+data;
+param pA := 3;
+param pB := 3;
+
+param S_I  := 21;
+param S_II := 4;
+param S_III:= 6;
+param S_IV := 10;

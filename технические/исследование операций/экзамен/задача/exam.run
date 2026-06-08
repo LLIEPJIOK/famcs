@@ -1,0 +1,9 @@
+reset;
+
+model exam.mod;
+data exam.dat;
+
+solve;
+
+display Q;
+display F;

@@ -1,0 +1,11 @@
+reset;
+model 9_lebedev_usr.mod;
+data 9_lebedev_usr.dat;
+
+option solver cplex;
+solve;
+
+display xA, xB, Z;
+display rI, rII, rIII, rIV;
+
+

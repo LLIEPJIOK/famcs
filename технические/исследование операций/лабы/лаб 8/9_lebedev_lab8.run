@@ -1,0 +1,105 @@
+reset;
+print "=== ЗАДАНИЕ 1 ===";
+
+model 9_lebedev_lab8.mod;
+data  9_lebedev_lab8_task1.dat;
+
+let {i in I} min_A_row[i] := min {j in J} A_orig[i,j];
+let alpha := max {i in I} min_A_row[i];
+let shift := if alpha <= 0 then 1 - alpha else 0;
+let {i in I, j in J} A_mod[i,j] := A_orig[i,j] + shift;
+
+solve;
+
+let Value_mod  := 1 / InvValue_P1;
+let Value_orig := Value_mod - shift;
+
+printf "Значение = %g\n\n", Value_orig;
+
+let {i in I} Optimal_P[i] := y[i] * Value_mod;
+let {j in J} Optimal_Q[j] := Constraints_P1[j].dual * Value_mod;
+
+display Optimal_P;
+display Optimal_Q;
+
+
+reset;
+print "";
+print "";
+
+print "=== ЗАДАНИЕ 2.1 ===";
+
+model 9_lebedev_lab8.mod;
+data  9_lebedev_lab8_task2_1.dat;
+
+let {i in I} min_A_row[i] := min {j in J} A_orig[i,j];
+let alpha := max {i in I} min_A_row[i];
+let shift := if alpha <= 0 then 1 - alpha else 0;
+let {i in I, j in J} A_mod[i,j] := A_orig[i,j] + shift;
+
+solve;
+
+let Value_mod  := 1 / InvValue_P1;
+let Value_orig := Value_mod - shift;
+
+printf "Значение = %g\n\n", Value_orig;
+
+let {i in I} Optimal_P[i] := y[i] * Value_mod;
+let {j in J} Optimal_Q[j] := Constraints_P1[j].dual * Value_mod;
+
+display Optimal_P;
+display Optimal_Q;
+
+reset;
+print "";
+print "";
+
+print "=== ЗАДАНИЕ 2.2 ===";
+
+model 9_lebedev_lab8.mod;
+data  9_lebedev_lab8_task2_2.dat;
+
+let {i in I} min_A_row[i] := min {j in J} A_orig[i,j];
+let alpha := max {i in I} min_A_row[i];
+let shift := if alpha <= 0 then 1 - alpha else 0;
+let {i in I, j in J} A_mod[i,j] := A_orig[i,j] + shift;
+
+solve;
+
+let Value_mod  := 1 / InvValue_P1;
+let Value_orig := Value_mod - shift;
+
+printf "Значение = %g\n\n", Value_orig;
+
+let {i in I} Optimal_P[i] := y[i] * Value_mod;
+let {j in J} Optimal_Q[j] := Constraints_P1[j].dual * Value_mod;
+
+display Optimal_P;
+display Optimal_Q;
+
+reset;
+print "";
+print "";
+
+print "=== ЗАДАНИЕ 3 ===";
+
+model 9_lebedev_lab8.mod;
+data  9_lebedev_lab8_task3.dat;
+
+let {i in I} min_A_row[i] := min {j in J} A_orig[i,j];
+let alpha := max {i in I} min_A_row[i];
+let shift := if alpha <= 0 then 1 - alpha else 0;
+let {i in I, j in J} A_mod[i,j] := A_orig[i,j] + shift;
+
+solve;
+
+let Value_mod  := 1 / InvValue_P1;
+let Value_orig := Value_mod - shift;
+
+printf "Значение = %g\n\n", Value_orig;
+
+let {i in I} Optimal_P[i] := y[i] * Value_mod;
+let {j in J} Optimal_Q[j] := Constraints_P1[j].dual * Value_mod;
+
+display Optimal_P;
+display Optimal_Q;

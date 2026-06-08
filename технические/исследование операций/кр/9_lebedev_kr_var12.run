@@ -1,0 +1,15 @@
+model 9_lebedev_kr_var12.mod;
+data 9_lebedev_kr_var12.dat;
+
+option solver gurobi;
+solve;
+
+printf "\nПредметы Сына 1:\n";
+printf {i in ITEMS: x[i] = 1} "%s\n", i;
+
+printf "\nПредметы Сына 2:\n";
+printf {i in ITEMS: x[i] = 0} "%s\n", i;
+
+printf "\nСтоимость Сына 1: %d\n", s;
+printf "Стоимость Сына 2: %d\n", TotalValue - s;
+printf "Разница: %d\n", z;

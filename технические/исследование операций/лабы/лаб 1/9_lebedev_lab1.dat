@@ -1,0 +1,12 @@
+param price_goat := 2;
+param price_oldman := 4;
+param price_troika := 10;
+
+param labor_goat := 0.3;
+param labor_oldman := 0.5;
+param labor_troika := 2;
+
+param labor_limit := 2300;
+param goat_limit := 3000;
+param oldman_limit := 2000;
+param troika_limit := 500;

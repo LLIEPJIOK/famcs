@@ -1,0 +1,48 @@
+reset;
+model 9_lebedev_lab8_task4.mod;
+data  9_lebedev_lab8_task4.dat;
+
+printf "=== Задание 4 ===";
+printf "\n\n";
+
+param minRow {i in I} := min {j in S} A[i,j];
+param maxRow {i in I} := max {j in S} A[i,j];
+param avgRow {i in I} := (sum {j in S} A[i,j]) / card(S);
+
+# 1) Критерий Вальда
+param waldValue := max {i in I} minRow[i];
+set WaldBest := {i in I: minRow[i] = waldValue};
+
+printf "Вальд = %g, оптимальные Q = ", waldValue;
+for {i in WaldBest} printf "%g ", i;
+printf "\n\n";
+
+# 2) Критерий Сэвиджа
+param bestByCol {j in S} := max {i in I} A[i,j];
+param Regret {i in I, j in S} := bestByCol[j] - A[i,j];
+param maxRegret {i in I} := max {j in S} Regret[i,j];
+param savageValue := min {i in I} maxRegret[i];
+set SavageBest := {i in I: maxRegret[i] = savageValue};
+
+printf "Сэвидж = %g, оптимальные Q = ", savageValue;
+for {i in SavageBest} printf "%g ", i;
+printf "\n\n";
+
+# 3) Критерий Гурвица
+param hurwicz {i in I} := alpha * maxRow[i] + (1 - alpha) * minRow[i];
+param hurwiczBestValue := max {i in I} hurwicz[i];
+set HurwiczBest := {i in I: hurwicz[i] = hurwiczBestValue};
+
+printf "Гурвиц (alpha=%g) = %g, оптимальные Q = ", alpha, hurwiczBestValue;
+for {i in HurwiczBest} printf "%g ", i;
+printf "\n\n";
+
+# 4) Критерий Лапласа
+param laplaceValue {i in I} := avgRow[i];
+param laplaceBestValue := max {i in I} laplaceValue[i];
+set LaplaceBest := {i in I: laplaceValue[i] = laplaceBestValue};
+
+printf "Лаплас = %g, оптимальные Q = ", laplaceBestValue;
+for {i in LaplaceBest} printf "%g ", i;
+printf "\n\n";
+
