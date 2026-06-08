@@ -1,0 +1,64 @@
+@page
+@model app.Pages.Rosters.DetailsModel
+
+@{
+    ViewData["Title"] = "Детали игрока";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        max-width: 800px;
+    }
+    h2 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    dt {
+        font-weight: 600;
+    }
+    dd {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>Детали игрока</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Номер</dt>
+                <dd class="col-sm-9">@Model.Player.Jersey</dd>
+
+                <dt class="col-sm-3">Имя</dt>
+                <dd class="col-sm-9">@Model.Player.FirstName</dd>
+
+                <dt class="col-sm-3">Фамилия</dt>
+                <dd class="col-sm-9">@Model.Player.SecondName</dd>
+
+                <dt class="col-sm-3">Позиция</dt>
+                <dd class="col-sm-9">@Model.Player.Position</dd>
+
+                <dt class="col-sm-3">Вес</dt>
+                <dd class="col-sm-9">@Model.Player.Weight</dd>
+
+                <dt class="col-sm-3">Рост</dt>
+                <dd class="col-sm-9">@Model.Player.Height</dd>
+
+                <dt class="col-sm-3">Город рождения</dt>
+                <dd class="col-sm-9">@Model.Player.BirthCity</dd>
+
+                <dt class="col-sm-3">Штат рождения</dt>
+                <dd class="col-sm-9">@Model.Player.BirthState</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-page="./Edit" asp-route-id="@Model.Player.PlayerId" class="btn btn-primary">Редактировать</a>
+        <a asp-page="./Index" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</div>

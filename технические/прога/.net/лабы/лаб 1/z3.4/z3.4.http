@@ -1,0 +1,6 @@
+@z3._4_HostAddress = http://localhost:5224
+
+GET {{z3._4_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,95 @@
+\documentclass{beamer}
+
+\usetheme{Madrid}
+
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+
+%Information to be included in the title page:
+\title[Sensor Location Problem] %optional
+{ЗАДАЧА МАТЕМАТИЧЕСКОГО МОДЕЛИРОВАНИЯ И МОНИТОРИНГА ПРОЦЕССОВ ОЦЕНКИ
+ПОТОКОВ НА НА НЕНАБЛЮДАЕМОЙ ЧАСТИ ДВУНАПРАВЛЕННОЙ СЕТИ И ЕЕ
+ПРИЛОЖЕНИЯ}
+
+\subtitle{Теоретическая и практическая часть}
+
+\author[Пилипчук Л.А.] % (optional, for multiple authors)
+{Пилипчук Людмила Андреевна}
+
+\institute[БГУ] % (optional)
+{
+ % \inst{1}%
+  Факультет прикладной математики и информатики\\
+  кафедра компьютерных технологий и систем
+%  \and
+%  \inst{2}%
+%  Faculty of Chemistry\\
+%  Very Famous University
+} \vspace{10mm}
+\date[Минск, 2018] % (optional)
+{Минск, БГУ, 2018}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{О сложности построения оптимального решения. Класс
+NP-полных задач поиска оптимальной сенсорной конфигурации  }
+
+{\bf В работе}\\
+ \vspace{2mm} [Bianco L. A network based model for
+traffic sensor location with implication in O/D matrix estimates /
+L. Bianco, G. Confessore, M. Gentili // Transportation Science. Vol.
+35, No. 1. -- 2001. -- P. 50
+-- 60.] \vspace{2mm}\\
+{\bf доказано следующее утверждение}: \\
+
+\vspace{2mm} задача идентификации сенсорной конфигурации с
+\textcolor{blue} {минимальным}  числом обозреваемых узлов --
+\textcolor{blue} {
+ оптимальное решение  задачи SLP}
+ является \textcolor{blue} {
+ NP-полной }  -- полного перебора вариантов
+узлов для установки сенсоров.
+
+\end{frame}
+\begin{frame}
+\frametitle{Класс NP-полных задач  поиска оптимальной сенсорной
+конфигурации  }
+
+\vspace{2mm} Для исследуемого  \textcolor{blue} {класса NP-полных
+задач } применение cтратегий \textcolor{blue} {полного перебора }
+вариантов:
+
+$$C_m^1=m,\,C_m^2=\frac{m(m-1)}{2},\ldots,\,C_m^k=\frac{m!}{k!(m-k)!} $$
+\vspace{2mm} размещения сенсоров в узлах сети (сенсорных
+конфигураций) из $ m=|I| $ узлов сети для поиска \textcolor{blue}
+{оптимального решения } задачи SLP \vspace{2mm} потребует
+\textcolor{blue} {огромных вычислительных затрат}.
+% даже для сетей относительно малой размерности.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{2.1. Пример оптимального решения} \textcolor{blue} {
+Докажем,}  что для \textcolor{blue} { полной наблюдаемости}   сети
+$G=(I, U)$ (рис. \ref{graph_SENSOR_1_ex0}), $I =\{1,\cdots,8\}$,
+$I^* =\{2,3,6,7\}$,
+%%$U=\{(1,2),(1,5),(2,1),(2,6),$$(3,4),$
+%%$(3,6),(4,3),(4,7),(4,8),(5,1),(6,2),(6,3),$
+%%$(6,7),(7,4),(7,6),(8,4)\}$
+\textcolor{blue} { достаточно одного обозреваемого узла}  $M =
+\{6\}$.
+
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.19]{graph-initial-ex0.pdf}
+                    \caption{{\ref{graph_SENSOR_1_ex0}.
+           Оптимальное решение: $M = \{6\}$.}
+                   \label{graph_SENSOR_1_ex0}}
+\end{figure}
+\end{frame}
+
+\end{document}

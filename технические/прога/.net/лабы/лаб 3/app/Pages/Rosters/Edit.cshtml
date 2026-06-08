@@ -1,0 +1,83 @@
+@page "{id}"
+@model app.Pages.Rosters.EditModel
+
+@{
+    ViewData["Title"] = "Редактировать игрока";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        max-width: 800px;
+    }
+    h2 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: 600;
+    }
+    .btn {
+        margin-right: 10px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>Редактировать игрока</h2>
+		
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <form method="post">
+        <input type="hidden" asp-for="Player.PlayerId" />
+        <div class="form-group">
+            <label asp-for="Player.Jersey">Номер</label>
+            <input asp-for="Player.Jersey" class="form-control" min="1" />
+            <span asp-validation-for="Player.Jersey" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.FirstName">Имя</label>
+            <input asp-for="Player.FirstName" class="form-control" />
+            <span asp-validation-for="Player.FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.SecondName">Фамилия</label>
+            <input asp-for="Player.SecondName" class="form-control" />
+            <span asp-validation-for="Player.SecondName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.Position">Позиция</label>
+            <input asp-for="Player.Position" class="form-control" />
+            <span asp-validation-for="Player.Position" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.Weight">Вес</label>
+            <input asp-for="Player.Weight" class="form-control" min="1" />
+            <span asp-validation-for="Player.Weight" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.Height">Рост</label>
+            <input asp-for="Player.Height" class="form-control" min="1" />
+            <span asp-validation-for="Player.Height" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.BirthCity">Город рождения</label>
+            <input asp-for="Player.BirthCity" class="form-control" />
+            <span asp-validation-for="Player.BirthCity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.BirthState">Штат рождения</label>
+            <input asp-for="Player.BirthState" class="form-control" />
+            <span asp-validation-for="Player.BirthState" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            <a asp-page="./Index" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

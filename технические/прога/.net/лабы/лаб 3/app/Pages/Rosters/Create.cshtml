@@ -1,0 +1,76 @@
+@page
+@model app.Pages.Rosters.CreateModel
+
+@{
+    ViewData["Title"] = "Добавить игрока";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        max-width: 800px;
+    }
+    h2 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>Добавить игрока</h2>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Player.Jersey"></label>
+            <input asp-for="Player.Jersey" class="form-control" min="1" />
+            <span asp-validation-for="Player.Jersey" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.FirstName"></label>
+            <input asp-for="Player.FirstName" class="form-control" />
+            <span asp-validation-for="Player.FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.SecondName"></label>
+            <input asp-for="Player.SecondName" class="form-control" />
+            <span asp-validation-for="Player.SecondName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.Position"></label>
+            <input asp-for="Player.Position" class="form-control" />
+            <span asp-validation-for="Player.Position" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.Weight"></label>
+            <input asp-for="Player.Weight" class="form-control" min="1" />
+            <span asp-validation-for="Player.Weight" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.Height"></label>
+            <input asp-for="Player.Height" class="form-control" min="1" />
+            <span asp-validation-for="Player.Height" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.BirthCity"></label>
+            <input asp-for="Player.BirthCity" class="form-control" />
+            <span asp-validation-for="Player.BirthCity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Player.BirthState"></label>
+            <input asp-for="Player.BirthState" class="form-control" />
+            <span asp-validation-for="Player.BirthState" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+        <a asp-page="./Index" class="btn btn-secondary ml-2">Отмена</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

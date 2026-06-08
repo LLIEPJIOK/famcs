@@ -1,0 +1,40 @@
+@page "{id}"
+@model app.Pages.Rosters.DeleteModel
+
+@{
+    ViewData["Title"] = "Удалить игрока";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        max-width: 600px;
+    }
+    h2 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    .confirmation-text {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>Удалить игрока</h2>
+
+    @if(Model.Player != null)
+    {
+        <div class="confirmation-text">
+            <h4>Вы действительно хотите удалить игрока: @Model.Player.FirstName @Model.Player.SecondName?</h4>
+        </div>
+
+        <form method="post">
+            <input type="hidden" asp-for="Player.PlayerId" />
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a asp-page="./Index" class="btn btn-secondary ml-2">Отмена</a>
+        </form>
+    }
+</div>

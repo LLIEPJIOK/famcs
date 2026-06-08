@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english, russian]{babel}
+
+\title{Dihotomiya}
+\author{lagutoa }
+\date{January 2019}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {
+   \begin{left}
+     \refstepcounter{algorithm}
+     \hrule height.8pt depth0pt \kern2pt
+     \renewcommand{\caption}[2][\relax]{
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}
+       \ifx\relax##1\relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}
+       \else
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{
+     \kern2pt\hrule\relax
+   \end{left}
+  }
+\makeatother
+
+\begin{document}
+
+
+    \begin{algorithm}[H]
+        \caption{Дихотомия массива: поиск загаданного числа}\label{alg:Example}
+        \large{\textbf{Условные обозначения: }}\\
+        \small{
+            $num$ - число элементов массива (массив содержит элементы $[1,2,..,num]$)\\
+            $hiddenNumber$ - загаданное число\\
+            $floor$ - функция округления: возвращает наибольшее целое число, которое меньше или равно данному числу\\
+            $half$ - половина элементов (число) с округлением к наименьшему целому числу \\
+            $middle$ - элемент - середина интервала\\
+            $p1$, $p1$ - рассматриваемый интервал $[p1, p2]$\\
+            $guessNumber$ - отгаданное число\\
+        }\\
+        \hspace*{\algorithmicindent} \textbf{Вход: } $num$, $hiddenNumber$\\
+        \hspace*{\algorithmicindent} \textbf{Выход: } $guessNumber$
+
+        \begin{algorithmic}[1]
+            \State {$p1 \gets 1$}
+            \State {$p2 \gets num$}
+            \While{ $p1 \ne p2$ }
+                \State $half \gets floor( (p2 - p1 + 1) / 2 ) $
+                \State $middle \gets p1 + half$
+                
+                \If{ $hiddenNumber \in [ p1, middle-1 ]$ }
+                    \State $p2 \gets middle-1$
+                \Else
+                    \State $p1 \gets middle$    
+                \EndIf
+            \EndWhile
+            \State {$guessNumber \gets p1$}
+            \State \Return $guessNumber$
+        \end{algorithmic}
+        
+    \end{algorithm}
+\end{document}

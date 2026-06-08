@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package roster;
+
+option go_package = "github.com/LLIEPJIOK/lab1/pkg/api/roster/v1;roster";
+option csharp_namespace = "app.Grpc.Players";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+message Player {
+  string player_id = 1;
+  int32 jersey = 2;
+  string first_name = 3;
+  string second_name = 4;
+  string position = 5;
+  google.protobuf.Timestamp birthday = 6;
+  google.protobuf.Int32Value weight = 7;
+  google.protobuf.Int32Value height = 8;
+  google.protobuf.StringValue birth_city = 9;
+  google.protobuf.StringValue birth_state = 10;
+}
+
+message GetPlayerRequest {
+  string player_id = 1;
+}
+
+message ListPlayersRequest {}
+
+message ListPlayersResponse {
+  repeated Player players = 1;
+}
+
+message AddPlayerRequest {
+  Player player = 1;
+}
+
+message AddPlayerResponse {}
+
+message UpdatePlayerRequest {
+  Player player = 1;
+}
+
+message UpdatePlayerResponse {}
+
+message DeletePlayerRequest {
+  string player_id = 1;
+}
+
+message DeletePlayerResponse {}
+
+service RosterService {
+  rpc GetPlayer(GetPlayerRequest) returns (Player);
+  
+  rpc ListPlayers(ListPlayersRequest) returns (ListPlayersResponse);
+  
+  rpc AddPlayer(AddPlayerRequest) returns (AddPlayerResponse);
+  
+  rpc UpdatePlayer(UpdatePlayerRequest) returns (UpdatePlayerResponse);
+  
+  rpc DeletePlayer(DeletePlayerRequest) returns (DeletePlayerResponse);
+}
