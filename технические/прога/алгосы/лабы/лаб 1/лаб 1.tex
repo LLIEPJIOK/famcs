@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[T2A]{fontenc} % russian letters
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{
+    top=1cm,
+    bottom=2cm,
+    left=4cm,
+    right=4cm
+}
+
+\renewcommand{\figurename}{Рисунок}
+
+\title{Лабораторная работа №1}
+\author{Денис Лебедев, 2 курс, 9 группа}
+\date{17 сентября 2023 г.}
+
+\begin{document}
+    \maketitle
+    \section{Общие сведения}
+        \hspace*{1cm}\textbf{Дихотомия} - это алгоритмический метод, который используется для нахождения решения задачи путем последовательного деления области поиска на две части и выбора той части, в которой находится решение. Этот метод широко используется в различных областях, включая математику, информатику и численные методы.
+        \hspace*{1cm}\textbf{Сложность алгоритма} - количество итераций необходимых для решения задачи этим алгоритмом. В случае дихотомии область поиска решения сужается вдвое после каждой итерации, таким образом сложность алгоритма равна O($log(n)$).
+        \hspace*{1cm}Ниже представлен псевдокод алгоритма нахождения загаданного числа в массиве с помощью дихотомии, а также код на языке программирования C++, содержащем элементы $[1, 2,..., num]$.
+
+    \section{Псевдокод}
+        \begin{algorithm}
+        \large{\textbf{Условные обозначения: \\}}
+        \small{
+            $num$ - число элементов массива (массив содержит элементы $[1, 2,..., num]$)\\
+            $hiddenNumber$ - загаданное число\\
+            $floor$ - функция округления: возвращает наибольшее целое число, которое меньше или равно данному числу\\
+            $half$ - половина элементов (число) с округлением к наименьшему целому числу \\
+            $middle$ - элемент - середина интервала\\
+            $p1$, $p1$ - рассматриваемый интервал $[p1, p2]$\\
+            $guessNumber$ - отгаданное число\\
+        } \\
+        \hspace*{\algorithmicindent} \textbf{Вход: } $num$, $hiddenNumber$\\
+        \hspace*{\algorithmicindent} \textbf{Выход: } $guessNumber$
+        \begin{algorithmic} [1]
+            \State{$p1 \gets 1$}
+            \State{$p2 \gets num$}
+            \While{$p1 \ne p2$}
+                \State{$half \gets floor((p2 - p1 + 1) / 2)$}
+                \State{$middle \gets p1 + half$}
+                \If{$hiddenNumber \in [p1, middle - 1]$}
+                    \State{$p2 \gets middle - 1$}
+                \Else
+                    \State{$p1 \gets middle$}
+                \EndIf
+            \EndWhile
+            \State{$guessNumber \gets p1$}
+            \State{\Return $guessNumber$}
+        \end{algorithmic}
+        \end{algorithm}
+
+    \newpage
+    \section{Код на языке C++}
+        \begin{figure} [h]
+            \centering
+            \includegraphics[width=1\textwidth]{dihotomia.png}
+            \caption{Реализация алгоритма дихотомии на языке C++}
+        \end{figure}
+\end{document}

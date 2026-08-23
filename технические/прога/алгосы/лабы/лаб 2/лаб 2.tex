@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage[T2A]{fontenc} % russian letters
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\geometry{
+    top=1cm,
+    bottom=2cm,
+    left=4cm,
+    right=4cm
+}
+
+% Определение стиля для узлов в кружочке
+\tikzset{
+  nodeStyle/.style={circle, draw, minimum size=10mm, inner sep=0pt},
+}
+
+\renewcommand{\tablename}{Таблица}
+
+\title{Лабароторная работа №2}
+\author{Лебедев Денис и Кветко Матвей, 2 курс 9 группа}
+\date{26 сентября 2023 г.}
+
+\begin{document}
+
+\maketitle
+\section{Теоретические сведения}
+\hspace*{1cm}Доспустим у нас есть какой-либо граф, тогда из него можно выделите следующие подграфы:
+\begin{itemize}
+    \item \textbf{Остовное дерево} - подграф, который включает в себя все вершины исходного графа и является деревом;
+    \item \textbf{Покрывающее дерево} - подграф ориентированного или неориентированного графа, который содержит все вершины графа и использует наименьшее количество рёбер;
+    \item \textbf{Корневое дерево} - это дерево, в котором одна из вершин называется корнем, и каждое ребро направлено от корня к листьям.
+\end{itemize}
+\hspace*{1cm}Для каждой вершины корневого дерева мы можем найти глубину (расстояние от корня до этой вершины), список предков и направление, что поможет при создании таблицы представления корневого дерева в памяти компьютера. Также для этого необходимо знать, как строить \textbf{династический обход} - метод обхода дерева, который позволяет посещать вершины дерева в определённом порядке, учитывая их иерархическую структуру.
+
+\section{Изначальный граф}
+\hspace*{1cm}На рисунке 1 представлен граф \textit{S = (I,U), I} = \{1, 2, 3, 4, 5, 6, 7\}, \textit{U} = \{\{1, 5\}, \{1, 6\}, \{2, 1\}, \{2, 3\}, \{2, 6\}, \{2, 7\}, \{3, 1\}, \{4, 3\}, \{5, 2\}, \{5, 4\}, \{6, 4\}, \{6, 3\}\};
+\begin{center}
+\begin{tikzpicture}
+  \node[nodeStyle] (1) at (1,4) {1};
+  \node[nodeStyle] (2) at (0,2) {2};
+  \node[nodeStyle] (3) at (2,0) {3};
+  \node[nodeStyle] (4) at (4,0) {4};
+  \node[nodeStyle] (5) at (6,2) {5};
+  \node[nodeStyle] (6) at (5,4) {6};
+  \node[nodeStyle] (7) at (3,5) {7};
+
+  \draw[->, >=stealth, ultra thick] (1) -- (5);
+  \draw[->, >=stealth, ultra thick] (1) -- (6);
+  \draw[->, >=stealth, ultra thick] (2) -- (1);
+  \draw[->, >=stealth, ultra thick] (2) -- (3);
+  \draw[->, >=stealth, ultra thick] (2) -- (6);
+  \draw[->, >=stealth, ultra thick] (2) -- (7);
+  \draw[->, >=stealth, ultra thick] (3) -- (1);
+  \draw[->, >=stealth, ultra thick] (4) -- (3);
+  \draw[->, >=stealth, ultra thick] (5) -- (2);
+  \draw[->, >=stealth, ultra thick] (5) -- (4);
+  \draw[->, >=stealth, ultra thick] (6) -- (4);
+  \draw[->, >=stealth, ultra thick] (6) -- (3);
+
+  \node[below] at (3, -1) {Рисунок 1. Граф \textit{S = (I,U)}};
+\end{tikzpicture}
+\end{center}
+
+\newgeometry{top=7cm, bottom=2cm}
+\newpage
+\section{Лебедев Денис}
+\hspace*{1cm} На рисунке 2 представлено корневое дерево данного графа с корнем 3 и соответствующее остовное дерево. В таблице 1 отражено представление данного корневого дерева в памяти компьютера.\\\\
+\begin{tikzpicture}
+  \node[nodeStyle] (1) at (6,2) {1};
+  \node[nodeStyle] (2) at (2,2) {2};
+  \node[nodeStyle] (3) at (3,4) [fill=gray!50] {3};
+  \node[nodeStyle] (4) at (4,2) {4};
+  \node[nodeStyle] (5) at (1,0) {5};
+  \node[nodeStyle] (6) at (0,2) {6};
+  \node[nodeStyle] (7) at (3,0) {7};
+
+  \draw[->, >=stealth, ultra thick] (2) -- (5);
+  \draw[->, >=stealth, ultra thick] (2) -- (7);
+  \draw[->, >=stealth, ultra thick] (3) -- (1);
+  \draw[->, >=stealth, ultra thick] (3) -- (2);
+  \draw[->, >=stealth, ultra thick] (3) -- (4);
+  \draw[->, >=stealth, ultra thick] (3) -- (6);
+
+  \node[nodeStyle] (1) at (14,2) {1};
+  \node[nodeStyle] (2) at (10,2) {2};
+  \node[nodeStyle] (3) at (11,4) {3};
+  \node[nodeStyle] (4) at (12,2) {4};
+  \node[nodeStyle] (5) at (9,0) {5};
+  \node[nodeStyle] (6) at (8,2) {6};
+  \node[nodeStyle] (7) at (11,0) {7};
+
+  \draw[-, >=stealth, ultra thick] (2) -- (5);
+  \draw[-, >=stealth, ultra thick] (2) -- (7);
+  \draw[-, >=stealth, ultra thick] (3) -- (1);
+  \draw[-, >=stealth, ultra thick] (3) -- (2);
+  \draw[-, >=stealth, ultra thick] (3) -- (4);
+  \draw[-, >=stealth, ultra thick] (3) -- (6);
+
+  \node[below] at (7, -1) {Рисунок 2. Корневое дерево с корнем 3 (слева), соответствующее остовное дерево (справа)};
+\end{tikzpicture}
+
+\begin{table} [h]
+  \centering
+  \caption{Представление корневого дерева в памяти компьютера}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{gray!75}Структуры представления & \multicolumn{7}{|c|}{\cellcolor{gray!50} Номер узла} \\
+    \arrayrulecolor{gray!75}\cline{1-2}
+    \arrayrulecolor{black} \cline{2-8}
+    \cellcolor{gray!75}корневого дерева & \cellcolor{gray!35}1 & \cellcolor{gray!35}2 & \cellcolor{gray!35}3 & \cellcolor{gray!35}4 & \cellcolor{gray!35}5 & \cellcolor{gray!35}6 & \cellcolor{gray!35}7 \\
+    \hline
+    \cellcolor{gray!50}\textit{pred[i]} & 3 & 3 & 0 & 3 & 2 & 3 & 2 \\
+    \hline
+    \cellcolor{gray!50}\textit{depth[i]} & 1 & 1 & 0 & 1 & 2 & 1 & 2 \\
+    \hline
+    \cellcolor{gray!50}\textit{dir[i]} & 1 & -1 & 0 & -1 & -1 & -1 & 1 \\
+    \hline
+    \cellcolor{gray!50}\textit{d[i]} & 4 & 7 & 1 & 2 & 6 & 3 & 5 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\newpage
+
+\section{Кветко Матвей}
+\hspace*{1cm} На рисунке 3 представлено корневое дерево данного графа с корнем 7, а также соответствующее остовное дерево. В таблице 2 приведено представление этого корневого дерева в памяти компьютера.\\\\
+\begin{tikzpicture}
+  \node[nodeStyle] (1) at (2,4) {1};
+  \node[nodeStyle] (2) at (5,5) {2};
+  \node[nodeStyle] (3) at (5,3) {3};
+  \node[nodeStyle] (4) at (3,1) {4};
+  \node[nodeStyle] (5) at (8,4) {5};
+  \node[nodeStyle] (6) at (1,2.5) {6};
+  \node[nodeStyle] (7) at (5,7) [fill=gray!50] {7};
+
+  \draw[->, >=stealth, ultra thick] (1) -- (6);
+  \draw[->, >=stealth, ultra thick] (2) -- (1);
+  \draw[->, >=stealth, ultra thick] (2) -- (3);
+  \draw[->, >=stealth, ultra thick] (2) -- (5);
+  \draw[->, >=stealth, ultra thick] (6) -- (4);
+  \draw[->, >=stealth, ultra thick] (7) -- (2);
+
+  \node[nodeStyle] (1) at (10,4) {1};
+  \node[nodeStyle] (2) at (13,5) {2};
+  \node[nodeStyle] (3) at (13,3) {3};
+  \node[nodeStyle] (4) at (11,1) {4};
+  \node[nodeStyle] (5) at (16,4) {5};
+  \node[nodeStyle] (6) at (9,2.5) {6};
+  \node[nodeStyle] (7) at (13,7) {7};
+
+  \draw[-, >=stealth, ultra thick] (1) -- (6);
+  \draw[-, >=stealth, ultra thick] (2) -- (1);
+  \draw[-, >=stealth, ultra thick] (2) -- (3);
+  \draw[-, >=stealth, ultra thick] (2) -- (5);
+  \draw[-, >=stealth, ultra thick] (6) -- (4);
+  \draw[-, >=stealth, ultra thick] (7) -- (2);
+
+  \node[below] at (8, 0) {Рисунок 3. Корневое дерево с корнем 7 (слева), соответстующее остовное дерево (справа)};
+\end{tikzpicture}
+
+\begin{table} [h]
+  \centering
+  \caption{Представление корневого дерева в памяти компьютера}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{gray!75}Структуры представления & \multicolumn{7}{|c|}{\cellcolor{gray!50} Номер узла} \\
+    \arrayrulecolor{gray!75}\cline{1-2}
+    \arrayrulecolor{black} \cline{2-8}
+    \cellcolor{gray!75}корневого дерева & \cellcolor{gray!35}1 & \cellcolor{gray!35}2 & \cellcolor{gray!35}3 & \cellcolor{gray!35}4 & \cellcolor{gray!35}5 & \cellcolor{gray!35}6 & \cellcolor{gray!35}7 \\
+    \hline
+    \cellcolor{gray!50}\textit{pred[i]} & 2 & 7 & 2 & 6 & 2 & 1 & 0 \\
+    \hline
+    \cellcolor{gray!50}\textit{depth[i]} & 2 & 1 & 2 & 4 & 2 & 3 & 0 \\
+    \hline
+    \cellcolor{gray!50}\textit{dir[i]} & 1 & -1 & 1 & 1 & -1 & 1 & 0 \\
+    \hline
+    \cellcolor{gray!50}\textit{d[i]} & 6 & 5 & 1 & 7 & 3 & 4 & 2 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\restoregeometry
+
+\end{document}
